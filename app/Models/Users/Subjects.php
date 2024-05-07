@@ -15,7 +15,9 @@ class Subjects extends Model
         'subject'
     ];
 
+
+    // リレーションの定義 多対１
     public function users(){
-        return;// リレーションの定義
+        return$this->belongsTo('App\User');
     }
 }
