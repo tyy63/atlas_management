@@ -6,7 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use App\Models\Users\Subjects;
 use App\Models\Posts\Like;
 use Auth;
 
@@ -67,9 +67,9 @@ class User extends Authenticatable
     }
 
 
-    // リレーションの定義 1対多
+    // リレーションの定義 多対多
     public function subjects(){
-        return $this->hasMany('App\Subjects');
+        return $this->belongsToMany('App\Models\Users\Subjects','subject_users','user_id','subject_id');
     }
 
 

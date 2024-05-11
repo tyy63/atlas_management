@@ -16,8 +16,8 @@ class Subjects extends Model
     ];
 
 
-    // リレーションの定義 多対１
+    // リレーションの定義 多対多
     public function users(){
-        return$this->belongsTo('App\User');
+        return$this->belongsToMany('App\Models\Users\User','subject_users','subject_id','user_id');
     }
 }
