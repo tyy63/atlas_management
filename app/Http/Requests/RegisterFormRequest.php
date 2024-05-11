@@ -55,13 +55,7 @@ class RegisterFormRequest extends FormRequest
             'under_name_kana' => 'required|string|string|regex:/\A[ァ-ヴー]+\z/u|max:30',
             'mail_address' => 'required|unique:users,mail_address|max:100',
             'sex' => 'required|in:1,2,3',
-
-            'birth_day' => 'required|date|after_or_equal:2000',
-
-            // 'old_year' => 'required|date',
-            // 'old_month' => 'required|between:1,12',
-            // 'old_day' => 'required|between:1,31',
-
+            'birth_day' => 'required|date|after_or_equal:2000-01-01|before:today',
             'role' => 'required|in:1,2,3,4',
             'password' => 'required|min:8|max:30|confirmed',
         ];
