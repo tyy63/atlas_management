@@ -56,8 +56,8 @@ class RegisterFormRequest extends FormRequest
             'mail_address' => 'required|unique:users,mail_address|max:100',
             'sex' => 'required|in:1,2,3',
 
-            'birth_day' => 'date',
-// 日付をまとめる→まとめてdateをかける。　yearには最小2000でいいか
+            'birth_day' => 'required|date|after_or_equal:2000',
+
             // 'old_year' => 'required|date',
             // 'old_month' => 'required|between:1,12',
             // 'old_day' => 'required|between:1,31',
