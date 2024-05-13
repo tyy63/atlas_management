@@ -13,7 +13,7 @@ class Like extends Model
         'like_post_id'
     ];
 
-    public function likeCounts($post_id){
-        return $this->where('like_post_id', $post_id)->get()->count();
+    public static function likeCounts($post_id){
+        return self::where('like_post_id', $post_id)->count();
     }
 }
