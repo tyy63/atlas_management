@@ -11,6 +11,8 @@ use App\Models\Posts\PostComment;
 use App\Models\Posts\Like;
 use App\Models\Users\User;
 use App\Http\Requests\BulletinBoard\PostFormRequest;
+use Illuminate\Support\Facades\Validator;
+
 use Auth;
 
 class PostsController extends Controller
@@ -74,7 +76,18 @@ class PostsController extends Controller
         return redirect()->route('post.input');
     }
 
-    public function commentCreate(Request $request){
+    // バリデーション機能を実装
+    public function commentCreate(Request $request)
+    {
+    $validator = Validator::make($request->all(), [
+        'comment' => 'required|string|max:2500',
+    ]);
+
+    if ($validator->fails()) {
+        return redirect()->back()
+                         ->withErrors($validator)
+                         ->withInput();
+        }
         PostComment::create([
             'post_id' => $request->post_id,
             'user_id' => Auth::id(),

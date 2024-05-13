@@ -12,7 +12,9 @@
         <div class="d-flex post_status">
           <div class="mr-5">
             <i class="fa fa-comment"></i><span class=""></span>
+            <p>{{ $post->commentCounts($post->id)->count() }}</p>
           </div>
+
           <div>
             @if(Auth::user()->is_Like($post->id))
             <p class="m-0"><i class="fas fa-heart un_like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}"></span></p>
@@ -20,7 +22,7 @@
             <p class="m-0"><i class="fas fa-heart like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}"></span></p>
             @endif
             {{-- いいねの数を表示 --}}
-            {{ \App\Models\posts\Like::likeCounts($post->id) }}
+            <p>{{ \App\Models\posts\Like::likeCounts($post->id) }}</p>
           </div>
         </div>
       </div>
