@@ -32,13 +32,13 @@ class CalendarWeekDay{
     $html[] = '<div class="text-left">';
     if($one_part){
 // 予約席残数の表示
-      $html[] = '<p class="day_part m-0 pt-1">1部 ' . 20 -$one_part->limit_users . '</p>';
+      $html[] = '<p class="day_part m-0 pt-1"><a href="'.route('calendar.admin.detail', ['date' => $ymd, 'part' => 1]).'">1部</a> ' . (20 - $one_part->limit_users) . '</p>';
     }
     if($two_part){
-      $html[] = '<p class="day_part m-0 pt-1">2部 ' . 20 -$two_part->limit_users . '</p>';
+      $html[] = '<p class="day_part m-0 pt-1"><a href="'.route('calendar.admin.detail', ['date' => $ymd, 'part' => 2]).'">2部</a> ' . (20 - $two_part->limit_users) . '</p>';
     }
     if($three_part){
-      $html[] = '<p class="day_part m-0 pt-1">3部 ' . 20 -$three_part->limit_users . '</p>';
+      $html[] = '<p class="day_part m-0 pt-1"><a href="'.route('calendar.admin.detail', ['date' => $ymd, 'part' => 3]).'">3部</a> ' . (20 - $three_part->limit_users) . '</p>';
     }
     $html[] = '</div>';
 
