@@ -43,6 +43,7 @@ class CalendarWeekDay{
     $html[] = '</div>';
 
     return implode("", $html);
+
   }
 
 
