@@ -10,6 +10,7 @@
           <th class="w-25">ID</th>
           <th class="w-25">名前</th>
           <th class="w-25">場所</th>
+        {{-- 予約者を表示 --}}
             @foreach($reservePersons as $reserve)
                 @foreach($reserve->users as $user)
                     <tr>
