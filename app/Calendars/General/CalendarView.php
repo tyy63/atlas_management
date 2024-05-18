@@ -55,23 +55,46 @@ class CalendarView{
           }else if($reservePart == 3){
             $reservePart = "リモ3部";
           }
-          if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
-            $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px"></p>';
-            $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
-          }else{
 
-            $html[] = '<button type="button" class="btn btn-danger p-0 w-75 open-modal-btn" name="delete_date" style="font-size:12px" data-date="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'" data-part="'. $reservePart .'">'. $reservePart .'</button>';
+
+// 過去日で予約してたら。最初のif
+          if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
+            $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">'.$reservePart.'</p>';
+            $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
+          }
+
+// 今日以降の予約に関してのelse　　
+          else{
+            if($reservePart =="リモ1部" ){
+            $reservePart = 1;
+          }else if($reservePart == "リモ2部"){
+            $reservePart = 2;
+          }else if($reservePart == "リモ3部"){
+            $reservePart = 3;
+          }
+
+            $html[] = '<button type="button" class="btn btn-danger p-0 w-75 open-modal-btn" name="delete_date" style="font-size:12px" data-date="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'" data-part="'. $reservePart .'">'.'リモ'. $reservePart .'部'.'</button>';
 
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
           }
-        }else{
+          // 受付終了表示　過去で予約していない時の記述
+          }elseif(!in_array($day->everyDay(), $day->authReserveDay())&&$startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
+          $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">受付終了</p>';
+          $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
+
+
+
+          }
+          // 未来分で予約していない時。（通常の今日以降の予約が選択できる状態）
+          else{
           $html[] = $day->selectPart($day->everyDay());
-        }
+          }
+
         $html[] = $day->getDate();
         $html[] = '</td>';
-      }
-      $html[] = '</tr>';
-    }
+        }
+        $html[] = '</tr>';
+        }
     $html[] = '</tbody>';
     $html[] = '</table>';
     $html[] = '</div>';
@@ -80,7 +103,6 @@ class CalendarView{
 
     return implode('', $html);
   }
-
   protected function getWeeks(){
     $weeks = [];
     $firstDay = $this->carbon->copy()->firstOfMonth();

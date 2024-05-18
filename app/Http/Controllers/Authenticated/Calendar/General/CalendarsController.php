@@ -40,27 +40,41 @@ class CalendarsController extends Controller
 // キャンセル用のメソッドを書く
 public function delete(Request $request){
 
-    DB::beginTransaction();
-    try{
-            dd($request);
-        $getPart = $request->getPart;
-        $getDate = $request->getData;
-        if ($getDate && $getPart) {
-        $reserveDays = array_filter(array_combine($getDate, $getPart));
-        foreach($reserveDays as $key => $value){
-            $reserve_settings = ReserveSettings::where('setting_reserve', $key)->where('setting_part', $value)->first();
-            if($reserve_settings) {
-                $reserve_settings->increment('limit_users');
-                $reserve_settings->users()->detach(Auth::id());
-            }
-        }
-        }
-        DB::commit();
-    }catch(\Exception $e){
-        DB::rollback();
+    $reserveDate = $request->input('date');
+    $reservePart = $request->input('part');
+    // dd($reservePart,$reserveDate);
+    // 検索→変数化→1増やす,detachする
+    $reserve_settings = ReserveSettings::where('setting_reserve', $reserveDate)
+                                        ->where('setting_part', $reservePart)
+                                        ->first();
 
-    }
+    $reserve_settings->increment('limit_users');
+    $reserve_settings->users()->detach(Auth::id());
+
+
+
     return redirect()->route('calendar.general.show', ['user_id' => Auth::id()]);
 }
+
+    // try{
+    //         dd($reserveDate,$reservePart);
+    //     $getPart = $request->getPart;
+    //     $getDate = $request->getData;
+    //     if ($getDate && $getPart) {
+    //     $reserveDays = array_filter(array_combine($getDate, $getPart));
+    //     foreach($reserveDays as $key => $value){
+    //         $reserve_settings = ReserveSettings::where('setting_reserve', $key)->where('setting_part', $value)->first();
+    //         if($reserve_settings) {
+    //             $reserve_settings->increment('limit_users');
+    //             $reserve_settings->users()->detach(Auth::id());
+    //         }
+    //     }
+    //     }
+    //     DB::commit();
+    // }catch(\Exception $e){
+    //     DB::rollback();
+
+    // }
+
 
 }
