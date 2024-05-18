@@ -30,12 +30,13 @@
       </div>
         <div class="w-50 m-auto edit-modal-btn d-flex">
           <a class="js-modal-close btn btn-danger d-inline-block" href="">閉じる</a>
-          <input type="hidden" class="edit-modal-hidden" name="post_id" value="">
-          <input type="submit" class="btn btn-primary d-block" value="キャンセル">
+
+          <input type="submit" class="btn btn-primary d-block" value="キャンセル" form="deleteParts">
         </div>
       </div>
       {{ csrf_field() }}
-
+          <input type="hidden" id="reserveDate" name="date" value="">
+          <input type="hidden" id="reservePart" name="part" value="">
     </form>
   </div>
 </div>
