@@ -71,10 +71,42 @@ class PostsController extends Controller
         Post::findOrFail($id)->delete();
         return redirect()->route('post.show');
     }
+
+    // メインカテゴリー作成
     public function mainCategoryCreate(Request $request){
         MainCategory::create(['main_category' => $request->main_category_name]);
         return redirect()->route('post.input');
     }
+
+
+    // 一覧で表示させる
+    public function showCategory()
+    {
+    $mainCategories = MainCategory::all();
+    return view('post_create.blade', compact('mainCategories'));
+    }
+
+// サブカテゴリー作成
+    public function subCategoryCreate(Request $request)
+    {
+        // dd($request);
+        // $request->validate([
+        //     'sub_category_name' => 'required|string|max:100|unique:sub_categories,sub_category',
+        //     'main_category_id' => 'required|exists:main_categories,id',
+        // ]);
+
+    // $mainCategories = MainCategory::get();
+
+    SubCategory::create([
+        'sub_category' => $request->sub_category_name,
+        'main_category_id' => $request->main_category_id,
+
+    ]);
+
+    return redirect()->route('form.show');
+}
+
+
 
     // バリデーション機能を実装
     public function commentCreate(Request $request)
