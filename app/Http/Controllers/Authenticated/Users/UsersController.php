@@ -24,7 +24,9 @@ class UsersController extends Controller
         // dd($request);
         $userFactory = new SearchResultFactories();
         $users = $userFactory->initializeUsers($keyword, $category, $updown, $gender, $role, $subjects);
-        $subjects = Subjects::all();
+        // $subjects = Subjects::all();
+        $subjects = Subjects::whereIn('id',[1,2,3]);
+        // dd($request);
         return view('authenticated.users.search', compact('users', 'subjects'));
     }
 
