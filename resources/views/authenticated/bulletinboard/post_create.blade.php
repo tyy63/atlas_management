@@ -64,7 +64,7 @@
     </div>
   </div>
   @endcan --}}
-  @can('admin')
+  {{-- @can('admin') --}}
 <div class="w-25 ml-auto mr-auto">
     <div class="category_area mt-5 p-5">
         <!-- メインカテゴリー追加フォーム -->
@@ -85,7 +85,7 @@
 
                 <select name="main_category_id" class="form-control mt-2" required>
                     <input type="text" class="form-control" name="sub_category_name" required>
-                    @foreach($mainCategories as $mainCategory)
+                    @foreach($searchResults as $mainCategory)
                         <option value="{{ $mainCategory->id }}">{{ $mainCategory->main_category }}</option>
                     @endforeach
                 </select>
@@ -94,6 +94,6 @@
         </div>
     </div>
 </div>
-@endcan
+{{-- @endcan --}}
 </div>
 @endsection
