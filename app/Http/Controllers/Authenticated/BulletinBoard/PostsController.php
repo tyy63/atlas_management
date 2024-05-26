@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Categories\MainCategory;
 use App\Models\Categories\SubCategory;
+
 use App\Models\Posts\Post;
 use App\Models\Posts\PostComment;
 use App\Models\Posts\Like;
@@ -22,13 +23,25 @@ class PostsController extends Controller
         $categories = MainCategory::get();
         $like = new Like;
         $post_comment = new Post;
+            //   dd($request);
         if(!empty($request->keyword)){
+            $keyword = $request->keyword;
             $posts = Post::with('user', 'postComments')
             ->where('post_title', 'like', '%'.$request->keyword.'%')
+// サブカテゴリーと一致したら表示を追記
+            ->orWhereHas('subCategories', function ($query) use ($keyword) {
+            $query->where('sub_category', '=', $keyword);
+            })
             ->orWhere('post', 'like', '%'.$request->keyword.'%')->get();
-        }else if($request->category_word){
-            $sub_category = $request->category_word;
-            $posts = Post::with('user', 'postComments')->get();
+
+
+// サブカテゴリー押すとその投稿が表示
+        }else if ($request->sub_search) {
+        $category_word = $request->sub_search;
+        $posts = Post::with('user', 'postComments')->whereHas('subCategories', function ($query) use ($category_word)
+        {$query->where('sub_category', $category_word);})->get();
+        // dd($request);
+
         }else if($request->like_posts){
             $likes = Auth::user()->likePostId()->get('like_post_id');
             $posts = Post::with('user', 'postComments')
@@ -49,6 +62,7 @@ class PostsController extends Controller
         $main_categories = MainCategory::with('subCategories')->get();
         return view('authenticated.bulletinboard.post_create', compact('main_categories'));
     }
+
 
     public function postCreate(PostFormRequest $request){
         $post = Post::create([
@@ -101,7 +115,7 @@ class PostsController extends Controller
     ]);
 
     return redirect()->route('post.input');
-}
+    }
 
 
 

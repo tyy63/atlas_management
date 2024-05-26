@@ -38,11 +38,23 @@
       </div>
       <input type="submit" name="like_posts" class="category_btn" value="いいねした投稿" form="postSearchRequest">
       <input type="submit" name="my_posts" class="category_btn" value="自分の投稿" form="postSearchRequest">
-      <ul>
-        @foreach($categories as $category)
-        <li class="main_categories" category_id="{{ $category->id }}"><span>{{ $category->main_category }}<span></li>
-        @endforeach
-      </ul>
+
+{{-- サブカテゴリー表示とその投稿一覧の表示の実装 --}}
+<ul>
+    @foreach($categories as $category)
+        <li class="main_categories" category_id="{{ $category->id }}">
+            <li>{{ $category->main_category }}</li>
+            <ul>
+              @foreach($category->subCategories as $subCategory)
+                  <li>
+                      <input type="hidden" name="sub_category_id" value="{{ $subCategory->id }}">
+                      <input type="submit" name="sub_search" class="category_btn" value="{{ $subCategory->sub_category }} "form="postSearchRequest">
+                  </li>
+              @endforeach
+            </ul>
+        </li>
+    @endforeach
+</ul>
     </div>
   </div>
   <form action="{{ route('post.show') }}" method="get" id="postSearchRequest"></form>
