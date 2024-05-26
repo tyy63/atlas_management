@@ -11,6 +11,27 @@
   background: #ECF1F6;
 }
 
+
+
+/* ロゴの位置 */
+.logo {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+
+}
+
+.logo_name {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.logo_container {
+  position: relative;
+}
+
+
 ul,
 li {
   list-style: none;

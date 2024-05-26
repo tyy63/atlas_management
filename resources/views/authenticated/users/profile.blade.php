@@ -19,12 +19,14 @@
         <span class="subject_edit_btn">選択科目の編集</span>
         <div class="subject_inner">
           <form action="{{ route('user.edit') }}" method="post">
-            @foreach($subject_lists as $subject_list)
-            <div>
-              <label>{{ $subject_list->subject }}</label>
-              <input type="checkbox" name="subjects[]" value="{{ $subject_list->id }}">
+            <div class="row">
+              @foreach($subject_lists as $subject_list)
+              <div class="col">
+                <label>{{ $subject_list->subject }}</label>
+                <input type="checkbox" name="subjects[]" value="{{ $subject_list->id }}">
+              </div>
+              @endforeach
             </div>
-            @endforeach
             <input type="submit" value="編集" class="btn btn-primary">
             <input type="hidden" name="user_id" value="{{ $user->id }}">
             {{ csrf_field() }}
