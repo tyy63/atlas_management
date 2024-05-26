@@ -140,8 +140,11 @@ return [
     */
 
     'custom' => [
-        '属性名' => [
-            'ルール名' => 'カスタムメッセージ',
+        'over_name_kana' => [
+            'regex' => 'セイはカタカナで入力してください。',
+        ],
+        'under_name_kana' => [
+            'regex' => 'メイはカタカナで入力してください。',
         ],
     ],
 
@@ -157,10 +160,11 @@ return [
     */
 
     'attributes' => ['username' => 'ユーザー名',
-    'mail' => 'メールアドレス',
+    'mail_address' => 'メールアドレス',
     'password' => 'パスワード',
     'over_name_kana'=>'セイ',
     'under_name_kana'=>'メイ',
+    'birth_day' => '生年月日',
     ],
 
 ];

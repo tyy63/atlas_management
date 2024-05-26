@@ -40,7 +40,7 @@ class PostsController extends Controller
         $category_word = $request->sub_search;
         $posts = Post::with('user', 'postComments')->whereHas('subCategories', function ($query) use ($category_word)
         {$query->where('sub_category', $category_word);})->get();
-        // dd($request);
+        // dd($category_word);
 
         }else if($request->like_posts){
             $likes = Auth::user()->likePostId()->get('like_post_id');
@@ -65,11 +65,17 @@ class PostsController extends Controller
 
 
     public function postCreate(PostFormRequest $request){
+
+        $subCategories = $request->sub_categories;
         $post = Post::create([
             'user_id' => Auth::id(),
             'post_title' => $request->post_title,
             'post' => $request->post_body
         ]);
+// 中間テーブルに登録する記述を追記
+        $subCategories = $request->input('post_category_id', []);
+        $post->subCategories()->attach($subCategories);
+
         return redirect()->route('post.show');
     }
 
