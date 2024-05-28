@@ -94,6 +94,14 @@ class PostsController extends Controller
 
     // メインカテゴリー作成
     public function mainCategoryCreate(Request $request){
+          $request->validate([
+            'main_category_name' => 'required|string|max:100|unique:main_categories,main_category',
+        ],  [
+            'main_category_name.required' => 'メインカテゴリーは必ず入力してください。',
+            'main_category_name.string' => 'メインカテゴリー名は文字列でなければなりません。',
+            'main_category_name.max' => 'メインカテゴリー名は100文字以内で入力してください。',
+            'main_category_name.unique' => 'このメインカテゴリー名は既に登録されています。',
+        ]);
         MainCategory::create(['main_category' => $request->main_category_name]);
         return redirect()->route('post.input');
     }
@@ -111,6 +119,11 @@ class PostsController extends Controller
     {
         $request->validate([
             'sub_category_name' => 'required|string|max:100|unique:sub_categories,sub_category',
+        ], [
+            'sub_category_name.required' => 'サブカテゴリーは必ず入力してください。',
+            'sub_category_name.string' => 'サブカテゴリー名は文字列でなければなりません。',
+            'sub_category_name.max' => 'サブカテゴリー名は100文字以内で入力してください。',
+            'sub_category_name.unique' => 'このサブカテゴリー名は既に登録されています。',
         ]);
 
     $mainCategories = MainCategory::get();
@@ -130,6 +143,9 @@ class PostsController extends Controller
     {
     $validator = Validator::make($request->all(), [
         'comment' => 'required|string|max:2500',
+    ], [
+        'comment.required' => 'コメントは必ず入力してください。',
+        'comment.max' => 'コメントは2500文字までです。',
     ]);
 
     if ($validator->fails()) {

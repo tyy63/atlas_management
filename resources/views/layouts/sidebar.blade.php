@@ -19,18 +19,39 @@
   <div class="d-flex">
     <div class="sidebar">
       @section('sidebar')
-      <p><a href="{{ route('top.show') }}">トップ</a></p>
-      <p><a href="/logout">ログアウト</a></p>
-      <p><a href="{{ route('calendar.general.show',['user_id' => Auth::id()]) }}">スクール予約</a></p>
+      <p>
+        <img src="{{ asset('image/home.png') }}" alt="home" class="icon">
+        <a href="{{ route('top.show') }}">トップ</a>
+      </p>
+      <p>
+        <img src="{{ asset('image/logout.png') }}" alt="logout" class="icon">
+        <a href="/logout">ログアウト</a>
+      </p>
+      <p>
+        <img src="{{ asset('image/reserve.png') }}" alt="reserve" class="icon">
+        <a href="{{ route('calendar.general.show',['user_id' => Auth::id()]) }}">スクール予約</a>
+      </p>
 
       @if(Auth::user()->role == 1 || Auth::user()->role == 2 || Auth::user()->role == 3)
-      <p><a href="{{ route('calendar.admin.show',['user_id' => Auth::id()]) }}">スクール予約確認</a></p>
+      <p>
+        <img src="{{ asset('image/home.png') }}" alt="home" class="icon">
+        <a href="{{ route('calendar.admin.show',['user_id' => Auth::id()]) }}">スクール予約確認</a>
+      </p>
       @endif
       @if(Auth::user()->role == 1 || Auth::user()->role == 2 || Auth::user()->role == 3)
-      <p><a href="{{ route('calendar.admin.setting',['user_id' => Auth::id()]) }}">スクール枠登録</a></p>
+      <p>
+        <img src="{{ asset('image/calender.png') }}" alt="calender" class="icon">
+        <a href="{{ route('calendar.admin.setting',['user_id' => Auth::id()]) }}">スクール枠登録</a>
+      </p>
       @endif
-      <p><a href="{{ route('post.show') }}">掲示板</a></p>
-      <p><a href="{{ route('user.show') }}">ユーザー検索</a></p>
+      <p>
+        <img src="{{ asset('image/comment.png') }}" alt="comment" class="icon">
+        <a href="{{ route('post.show') }}">掲示板</a>
+      </p>
+      <p>
+        <img src="{{ asset('image/human.png') }}" alt="human" class="icon">
+        <a href="{{ route('user.show') }}">ユーザー検索</a>
+      </p>
       @show
     </div>
     <div class="main-container">
