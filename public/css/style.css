@@ -22,14 +22,100 @@
 }
 
 
+
+/* CSS追加箇所 */
+/* CSS追加箇所 */
+/* CSS追加箇所 */
+
+/* 投稿タイトル */
+.post_titile {
+  font-weight: bold;
+  color: #494949;
+}
+
+input.btn.custom-btn {
+  color: #fff;
+}
+
+.keyword {
+  display: flex;
+}
+
+
+.other_area {
+  margin-right: 0px;
+}
+
+.name {
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-bottom: 30px;
+}
+
+
+.line_a {
+  margin-bottom: 5px;
+}
+
+
+.border one_person {
+  padding: 20px;
+}
+
+
+.search_view {
+  margin-top: 10px;
+}
+
+
+.search-btn {
+  width: 70%;
+}
+
+.search_a {
+  font-size: 25px;
+  margin-top: 40px;
+}
+
+.search_b {
+  margin-top: 10px;
+}
+
+.search_d {
+  margin-left: 10px;
+}
+
+
+.sub-search {
+  margin-top: 20px;
+}
+
+
+.reset-button {
+  background: none;
+  border: none;
+  color: #03AAD2;
+  cursor: pointer;
+  padding: 0;
+  font-size: inherit;
+}
+
+
+
+
+
+
+
+
+
 /* ロゴの位置 */
 .logo {
   position: absolute;
   top: 120px;
   left: 50%;
   transform: translateX(-50%);
-  height: 55px;
-  width: 165px;
+  height: 110px;
+  width: 330px;
 
 }
 
@@ -72,6 +158,14 @@ li {
 .sidebar p a {
   color: #FFF;
 }
+
+
+
+.post-btn {
+  margin-bottom: 20px;
+}
+
+
 
 /* トップページ */
 .user_status {
@@ -181,8 +275,26 @@ li {
 }
 
 .post_bottom_area {
+  display: flex;
   justify-content: space-between;
 }
+
+.counts {
+  display: flex;
+}
+
+.subcategories {
+  display: inline-block;
+  color: white;
+  background-color: #03AAD2;
+  padding: 5px 10px;
+  border-radius: 12px;
+  margin: 5px;
+  text-align: center;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
 
 .like_btn,
 .un_like_btn {
@@ -276,8 +388,8 @@ li {
   border-radius: 5px;
   padding: 0 5px;
   border: none;
-  background: #999;
-  color: #FFF;
+  background: none;
+  color: #494949;
 }
 
 .main_categories span,
@@ -306,6 +418,7 @@ li {
 .one_person {
   width: 250px;
   height: 250px;
+  border-radius: 8px;
 }
 
 .search_conditions span {
@@ -315,6 +428,20 @@ li {
 .search_conditions_inner {
   display: none;
   background: #FFF;
+}
+
+.subject {
+  margin-top: 8px;
+  display: flex;
+}
+
+.subject_space {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.subject_register {
+  margin-left: 5px;
 }
 
 .subject_edit_btn {

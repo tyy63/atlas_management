@@ -16,6 +16,14 @@
           </div>
           @endif
         </div>
+                  @error('post_title')
+                    <div class="text-danger">{{ $message }}</div>
+                  @enderror
+            <div class="subcategories">
+                  @foreach($post->subCategories as $subCategory)
+                    <span>{{ $subCategory->sub_category }}</span>
+                  @endforeach
+            </div>
         <div class="contributor d-flex">
           <p>
             <span>{{ $post->user->over_name }}</span>
@@ -28,6 +36,9 @@
         <div class="mt-3 detsail_post">{{ $post->post }}</div>
       </div>
       <div class="p-3">
+                  @error('post_body')
+                    <div class="text-danger">{{ $message }}</div>
+                  @enderror
         <div class="comment_container">
           <span class="">コメント</span>
           @foreach($post->postComments as $comment)
