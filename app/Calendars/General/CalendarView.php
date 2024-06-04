@@ -26,7 +26,7 @@ class CalendarView{
     $html[] = '<th>水</th>';
     $html[] = '<th>木</th>';
     $html[] = '<th>金</th>';
-     $html[] = '<th class="day-sat border">土</th>';
+    $html[] = '<th class="day-sat border">土</th>';
     $html[] = '<th class="day-sun border">日</th>';
     $html[] = '</tr>';
     $html[] = '</thead>';
@@ -79,7 +79,7 @@ class CalendarView{
           }
           // 受付終了表示　過去で予約していない時の記述
           }elseif(!in_array($day->everyDay(), $day->authReserveDay())&&$startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
-          $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">受付終了</p>';
+          $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px; color: black;">受付終了</p>';
           $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
 
 

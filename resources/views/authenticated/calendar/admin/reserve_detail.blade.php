@@ -3,7 +3,8 @@
 @section('content')
 <div class="vh-100 d-flex" style="align-items:center; justify-content:center;">
   <div class="w-50 m-auto h-75">
-    <p><span>{{ $formattedDate }}</span><span class="ml-3">{{ $part }}部</span></p>
+    <p><span style="font-size: 23px;">{{ $formattedDate }}</span>
+<span class="ml-3" style="font-size: 23px;">{{ $part }}部</span></p>
 
 
 

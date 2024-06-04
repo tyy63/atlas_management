@@ -19,14 +19,14 @@
             </div>
             <div class='counts'>
               <div class="mr-5">
-                <i class="fa fa-comment"></i><span class="">{{ $post->commentCounts($post->id)->count() }}</span>
+              <i class="fa fa-comment text-secondary"></i><span class="">{{ $post->commentCounts($post->id)->count() }}</span>
                 {{-- <p>{{ $post->commentCounts($post->id)->count() }}</p> --}}
               </div>
               <div>
                 @if(Auth::user()->is_Like($post->id))
                 <p class="m-0"><i class="fas fa-heart un_like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}"></span></p>
                 @else
-                <p class="m-0"><i class="fas fa-heart like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}">{{ \App\Models\posts\Like::likeCounts($post->id) }}</span></p>
+                <p class="m-0"><i class="far fa-heart like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}">{{ \App\Models\posts\Like::likeCounts($post->id) }}</span></p>
                 @endif
                 {{-- いいねの数を表示 --}}
                 {{-- <p>{{ \App\Models\posts\Like::likeCounts($post->id) }}</p> --}}
@@ -44,35 +44,38 @@
       </div>
       <div class="keyword" style="display: flex;">
         <div class="keyword_size" style="flex: 0 0 70%;">
-          <input type="text" placeholder="キーワードを検索" name="keyword" form="postSearchRequest" style="width: 100%; background-color: #ECF1F6; border-radius: 5px; padding: 8px;">
+          <input type="text" placeholder="キーワードを検索" name="keyword" form="postSearchRequest" style="width: 100%; background-color: #ECF1F6; border-radius: 5px; padding: 8px; border: 1px solid #ddd;">
         </div>
         <input type="submit" value="検索" form="postSearchRequest" class="btn btn-info btn-block" style="flex: 0 0 30%;">
       </div>
         <div class="d-flex" style="margin-top: 20px;">
-            <input type="submit" name="like_posts" class="btn btn-danger category_btn" style="flex: 1; margin-right: 5px;" value="いいねした投稿" form="postSearchRequest">
-            <input type="submit" name="my_posts" class="btn btn-warning category_btn" style="flex: 1; margin-left: 5px;" value="自分の投稿" form="postSearchRequest">
+          <form id="postSearchRequest">
+            <input type="submit" name="like_posts" class="btn btn-danger category_btn pink_btn" value="いいねした投稿">
+            <input type="submit" name="my_posts" class="btn btn-warning category_btn yellow_btn" value="自分の投稿">
+          </form>
         </div>
-
       <p class="sub-search">カテゴリー検索</p>
 {{-- サブカテゴリー表示とその投稿一覧の表示の実装 --}}
-        <ul>
-            @foreach($categories as $category)
-                <li class="main_categories" category_id="{{ $category->id }}">
-                    <div class="main_category_toggle">
-                        {{ $category->main_category }}
-                        <i class="fas fa-chevron-up"></i>
-                    </div>
-                    <ul class="sub_categories">
-                      @foreach($category->subCategories as $subCategory)
-                          <li style="background-color: #ECF1F6;">
-                              <input type="hidden" name="sub_category_id" value="{{ $subCategory->id }}">
-                              <input type="submit" name="sub_search" class="category_btn" value="{{ $subCategory->sub_category }}" form="postSearchRequest">
-                          </li>
-                      @endforeach
-                    </ul>
-                </li>
-            @endforeach
-        </ul>
+<ul>
+  @foreach($categories as $category)
+  <li class="main_categories" category_id="{{ $category->id }}">
+    <div class="main_category_wrapper">
+      <div class="a-space-between" style="display: flex; align-items: center; width: 100%;">
+        <div class="main_category_toggle">{{ $category->main_category }}</div>
+        <div><i class="fas fa-chevron-up"></i></div>
+      </div>
+    </div>
+    <ul class="sub_categories">
+      @foreach($category->subCategories as $subCategory)
+      <li style="background-color: #ECF1F6; border-bottom: 1px solid #ddd; padding-left: 20px;">
+        <input type="hidden" name="sub_category_id" value="{{ $subCategory->id }}">
+        <input type="submit" name="sub_search" class="category_btn" value="{{ $subCategory->sub_category }}" form="postSearchRequest">
+      </li>
+      @endforeach
+    </ul>
+  </li>
+  @endforeach
+</ul>
     </div>
   </div>
   <form action="{{ route('post.show') }}" method="get" id="postSearchRequest"></form>

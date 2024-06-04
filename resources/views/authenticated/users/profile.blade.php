@@ -20,7 +20,7 @@
       </div>
       <div class="">
         @can('admin')
-        <span class="subject_edit_btn">選択科目の編集<i class="fas fa-chevron-up"></i></span>
+        <span class="subject_edit_btn" style="color: #3498db;">選択科目の編集<i class="fas fa-chevron-up"></i></span>
         <div class="subject_inner">
           <form action="{{ route('user.edit') }}" method="post">
             <div class="subject">

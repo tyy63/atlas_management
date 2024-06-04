@@ -75,13 +75,13 @@ return [
     'lte'                  => [
         'numeric' => ':attributeには、:value以下の値を指定してください。',
         'file'    => ':attributeには、:value kB以下のファイルを指定してください。',
-        'string'  => ':attributeは、:value文字以下で指定してください。',
+        'string'  => ':attributeは、:value文字以下で入力してください。',
         'array'   => ':attributeには、:value個以下のアイテムを指定してください。',
     ],
     'max'                  => [
         'numeric' => ':attributeには、:max以下の数字を指定してください。',
         'file'    => ':attributeには、:max kB以下のファイルを指定してください。',
-        'string'  => ':attributeは、:max文字以下で指定してください。',
+        'string'  => ':attributeは、:max文字以下で入力してください。',
         'array'   => ':attributeは:max個以下指定してください。',
     ],
     'mimes'                => ':attributeには:valuesタイプのファイルを指定してください。',
@@ -128,6 +128,9 @@ return [
     'over_name_kana'=>'attributeはカタカナで入力してください。',
     'under_name_kana'=>'attributeはカタカナで入力してください。',
 
+    'over_name'=>'attributeは必ず入力してください。',
+    'under_name'=>'attributeは必ず入力してください。',
+
     /*
     |--------------------------------------------------------------------------
     | Custom バリデーション言語行
@@ -139,14 +142,22 @@ return [
     |
     */
 
-    'custom' => [
-        'over_name_kana' => [
-            'regex' => 'セイはカタカナで入力してください。',
-        ],
-        'under_name_kana' => [
-            'regex' => 'メイはカタカナで入力してください。',
-        ],
+'custom' => [
+    'over_name_kana' => [
+        'regex' => 'セイはカタカナで入力してください。',
     ],
+    'under_name_kana' => [
+        'regex' => 'メイはカタカナで入力してください。',
+    ],
+    'over_name' => [
+        'regex' => '姓は必ず入力してください。',
+    ],
+    'under_name' => [
+        'regex' => '名は必ず入力してください。',
+    ],
+],
+
+
 
     /*
     |--------------------------------------------------------------------------
@@ -165,6 +176,8 @@ return [
     'over_name_kana'=>'セイ',
     'under_name_kana'=>'メイ',
     'birth_day' => '生年月日',
+    'over_name' => '姓',
+    'under_name' => '名',
     ],
 
 ];
