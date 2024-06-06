@@ -2,9 +2,9 @@
 
 @section('content')
 <div class="search_content w-100 border d-flex">
-  <div class="reserve_users_area" style="overflow-y: hidden; background-color: #ECF1F6;">
+  <div class="reserve_users_area d-flex flex-wrap" style="overflow-y: hidden; background-color: #ECF1F6; padding: 10px;">
     @foreach($users as $user)
-    <div class="border one_person" style="background-color: #FFF; margin: 8px; padding: 8px; box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);">
+    <div class="border one_person" style="background-color: #FFF; margin: 10px; padding: 8px; box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2); flex-basis: calc(25% - 20px); max-width: calc(25% - 20px);">
       <div class="line_a">
         <span>ID : </span><span>{{ $user->id }}</span>
       </div>
@@ -20,42 +20,41 @@
         <span style="font-weight: bold;">{{ $user->under_name_kana }})</span>
       </div>
       <div class="line_a">
-      <span>性別 : </span>
-      @if($user->sex == 1)
-          <span style="font-weight: bold;">男</span>
-      @elseif($user->sex == 2)
-          <span style="font-weight: bold;">女</span>
-      @else
-          <span style="font-weight: bold;">その他</span>
-      @endif
+        <span>性別 : </span>
+        @if($user->sex == 1)
+            <span style="font-weight: bold;">男</span>
+        @elseif($user->sex == 2)
+            <span style="font-weight: bold;">女</span>
+        @else
+            <span style="font-weight: bold;">その他</span>
+        @endif
       </div>
       <div class="line_a">
         <span>生年月日 : </span><span style="font-weight: bold;">{{ $user->birth_day }}</span>
       </div>
       <div class="line_a">
-      <span>権限 : </span>
-      @if($user->role == 1)
-          <span style="font-weight: bold;">教師(国語)</span>
-      @elseif($user->role == 2)
-          <span style="font-weight: bold;">教師(数学)</span>
-      @elseif($user->role == 3)
-          <span style="font-weight: bold;">講師(英語)</span>
-      @else
-          <span style="font-weight: bold;">生徒</span>
-      @endif
+        <span>権限 : </span>
+        @if($user->role == 1)
+            <span style="font-weight: bold;">教師(国語)</span>
+        @elseif($user->role == 2)
+            <span style="font-weight: bold;">教師(数学)</span>
+        @elseif($user->role == 3)
+            <span style="font-weight: bold;">講師(英語)</span>
+        @else
+            <span style="font-weight: bold;">生徒</span>
+        @endif
       </div>
       <div class="line_a">
-      @if($user->role == 4)
-          <span>選択科目 :</span>
-          @foreach($user->subjects as $subject)
-              <span style="font-weight: bold;">{{ $subject->subject }}</span>
-          @endforeach
-      @endif
+        @if($user->role == 4)
+            <span>選択科目 :</span>
+            @foreach($user->subjects as $subject)
+                <span style="font-weight: bold;">{{ $subject->subject }}</span>
+            @endforeach
+        @endif
       </div>
     </div>
     @endforeach
   </div>
-
   <div class="search_area w-25 border">
     <div class="search_d">
       <p class="search_a">検索</p>

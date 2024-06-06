@@ -102,13 +102,13 @@ input.btn.custom-btn {
 
 
 #postSearchRequest input.btn.btn-danger.category_btn.pink_btn {
-  background-color: #FFBBFF;
+  background-color: #e17397;
   color: white;
   border: none;
 }
 
 #postSearchRequest input.btn.btn-warning.category_btn.yellow_btn {
-  background-color: #ffeb3b;
+  background-color: #eeb12e;
   color: white;
   border: none;
 }
@@ -330,32 +330,19 @@ li {
 }
 
 
-.like_btn,
-.un_like_btn {
-  cursor: pointer;
+
+
+
+.fa-heart {
+  color: red;
 }
 
-.un_like,
-.un_like_btn {
-  color: #E2254D;
-}
-
-.like_btn i.fa-heart:before,
-.un_like_btn i.fa-heart:before {
+/* far fa-heartを黒に設定 */
+.far.fa-heart {
   color: black;
-  border: 1px solid black;
-  /* ハートの外枠の色 */
 }
 
-.like_btn i.fa-heart:before {
-  background-color: white;
-  /* ボタンが押されていないときのハートの内側の色 */
-}
 
-.un_like_btn i.fa-heart:before {
-  background-color: #E2254D;
-  /* ボタンが押されたときのハートの内側の色 */
-}
 
 .error_message {
   font-size: 12px;
