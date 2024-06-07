@@ -41,49 +41,51 @@
     </div>
     @endforeach
   </div>
-<div class="other_area border w-25" style="margin-right: 40px;">
-    <div class="border m-4" style="width: 100%;">
-      <div class="post-btn" style="margin-bottom: 20px;">
-        <a href="{{ route('post.input') }}" class="btn btn-info btn-block">投稿</a>
-      </div>
-      <div class="keyword" style="display: flex; margin-bottom: 20px;">
-        <div class="keyword_size" style="flex: 0 0 70%;">
-          <input type="text" placeholder="キーワードを検索" name="keyword" form="postSearchRequest" style="width: 100%; background-color: #ECF1F6; border-radius: 5px; padding: 8px; border: 1px solid #ddd;">
+  <div class="other_area w-25" style="margin-right: 40px; border: none;">
+      <div class="m-4" style="width: 100%;">
+        <div class="post-btn" style="margin-bottom: 20px;">
+          <a href="{{ route('post.input') }}" class="btn btn-info btn-block">投稿</a>
         </div>
-        <input type="submit" value="検索" form="postSearchRequest" class="btn btn-info btn-block" style="flex: 0 0 30%;">
-      </div>
-        <div class="d-flex" style="margin-top: 20px;">
-          <form id="postSearchRequest" style="width: 100%;">
-<div class="d-flex justify-content-between align-items-center" style="height: 44px; /* ボタンの合計高さと一致させる */">
-  <input type="submit" name="like_posts" class="btn btn-danger category_btn pink_btn btn-block" style="height: 40px; margin: 0; border-width: 2px;" value="いいねした投稿">
-  <input type="submit" name="my_posts" class="btn btn-warning category_btn yellow_btn btn-block" style="height: 40px; margin: 0; border-width: 2px;" value="自分の投稿">
-</div>
-          </form>
+        <div class="keyword" style="display: flex; margin-bottom: 20px;">
+          <div class="keyword_size" style="flex: 0 0 70%;">
+            <input type="text" placeholder="キーワードを検索" name="keyword" form="postSearchRequest" style="width: 100%; background-color: #ECF1F6; border-radius: 5px; padding: 8px; border: 1px solid #ddd;">
+          </div>
+          <input type="submit" value="検索" form="postSearchRequest" class="btn btn-info btn-block" style="flex: 0 0 30%;">
         </div>
-      <p class="sub-search">カテゴリー検索</p>
-      {{-- サブカテゴリー表示とその投稿一覧の表示の実装 --}}
+          <div class="d-flex" style="margin-top: 20px;">
+            <form id="postSearchRequest" style="width: 100%;">
+            <div class="d-flex justify-content-between align-items-center" style="height: 44px;">
+              <input type="submit" name="like_posts" class="btn btn-danger category_btn pink_btn btn-block" style="height: 40px; margin: 0; border-width: 2px; margin-right: 2px;" value="いいねした投稿">
+              <input type="submit" name="my_posts" class="btn btn-warning category_btn yellow_btn btn-block" style="height: 40px; margin: 0; border-width: 2px; margin-left: 2px;" value="自分の投稿">
+            </div>
+            </form>
+          </div>
+        <p class="sub-search">カテゴリー検索</p>
+        {{-- サブカテゴリー表示とその投稿一覧の表示の実装 --}}
         <ul>
             @foreach($categories as $category)
-            <li class="main_categories" category_id="{{ $category->id }}">
+            <li class="main_categories" category_id="{{ $category->id }}" style="border-bottom: 1px solid #ddd;">
                 <div class="main_category_wrapper">
                     <div class="a-space-between" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
                         <div class="main_category_toggle">{{ $category->main_category }}</div>
-                        <div><i class="fas fa-chevron-up"></i></div>
+                        <div><i class="fas fa-chevron-down"></i></div>
                     </div>
                 </div>
                 <ul class="sub_categories">
                     @foreach($category->subCategories as $subCategory)
-                    <li style="background-color: #ECF1F6; border-bottom: 1px solid #ddd; padding-left: 20px;">
-                        <input type="hidden" name="sub_category_id" value="{{ $subCategory->id }}">
-                        <input type="submit" name="sub_search" class="category_btn" value="{{ $subCategory->sub_category }}" form="postSearchRequest">
+                    <li style="background-color: #ECF1F6; padding-left: 30px; padding-right: 30px;"> <!-- 右側のpaddingを追加 -->
+                        <div class="underline"> <!-- 新しいスタイルを適用 -->
+                            <input type="hidden" name="sub_category_id" value="{{ $subCategory->id }}">
+                            <input type="submit" name="sub_search" class="category_btn" value="{{ $subCategory->sub_category }}" form="postSearchRequest">
+                        </div>
                     </li>
                     @endforeach
                 </ul>
             </li>
             @endforeach
         </ul>
+      </div>
     </div>
+    <form action="{{ route('post.show') }}" method="get" id="postSearchRequest"></form>
   </div>
-  <form action="{{ route('post.show') }}" method="get" id="postSearchRequest"></form>
-</div>
 @endsection

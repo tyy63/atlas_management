@@ -78,7 +78,7 @@
       <div class="search_b">
         <p class="m-0 search_conditions" style="border-bottom: 2px solid #DDDDDD; display: flex; justify-content: space-between;">
           <span class="search_user_btn">検索条件の追加</span>
-          <i class="fas fa-chevron-up"></i>
+          <i class="fas fa-chevron-down"></i>
         </p>
         <div class="search_conditions_inner" style="background-color: #ECF1F6;">
           <div>

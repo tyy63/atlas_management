@@ -28,6 +28,13 @@
 /* CSS追加箇所 */
 
 /* 投稿タイトル */
+
+.sub_categories li .underline {
+  border-bottom: 1px solid #ddd;
+  width: 350px;
+  display: inline-block;
+}
+
 .post_titile {
   font-weight: bold;
   color: #494949;
